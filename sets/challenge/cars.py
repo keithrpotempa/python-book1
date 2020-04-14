@@ -38,31 +38,48 @@ available_car_colors = (
   (15, 1), (15, 4), (15, 7)
 )
 
-reporting_object = {}
-
-def make_reporting_object():
-  for make in makes:
-      make_id = make[0]
-      make_name = make[1]
-      reporting_object[make_name] = {}
-      for model in models:
-          model_id = model[0]
-          model_name = model[1]
-          model_fk = model[2]
-          if model_fk == make_id:
-              reporting_object[make_name][model_name] = []
-              for color in available_car_colors:
-                    color_model = color[0]
-                    color_id = color[1]
-                    if color_model == model_id:
-                        #print(colors[color_id][1])
-                        for color in colors:
-                            id = color[0]
-                            color_name = color[1]
-                            if color_id == id:
-                                reporting_object[make_name][model_name].append(color_name)
+#Original challenge:
+#------------------------
+# def make_reporting_object():
+#   for make in makes:
+#       make_id = make[0]
+#       make_name = make[1]
+#       reporting_object[make_name] = {}
+#       for model in models:
+#           model_id = model[0]
+#           model_name = model[1]
+#           model_fk = model[2]
+#           if model_fk == make_id:
+#               reporting_object[make_name][model_name] = []
+#               for color in available_car_colors:
+#                     color_model = color[0]
+#                     color_id = color[1]
+#                     if color_model == model_id:
+#                         #print(colors[color_id][1])
+#                         for color in colors:
+#                             id = color[0]
+#                             color_name = color[1]
+#                             if color_id == id:
+#                                 reporting_object[make_name][model_name].append(color_name)
   
-# print(reporting_object)
+#"Black Hat" challenge:
+#------------------------
+def make_reporting_object():
+    r = dict([(
+        make[1], 
+        dict([(
+            model[1], 
+            [ 
+              #https://www.quora.com/How-do-you-search-a-list-of-tuples-in-Python
+              color[1] for color in colors if (model[0], color[0]) in available_car_colors
+              # for avail_color in available_car_colors if (model[0], color[0]) in avail_color == True
+              # avail_color[1] for avail_color in available_car_colors if avail_color[0] == model[2] 
+              # avail_color[1] for avail_color in available_car_colors if avail_color[0] == model[2] #will get color ids
+              # color[1] for color in colors #will get color names
+            ] 
+        ) for model in models if model[2] == make[0]])
+    ) for make in makes ])
+    return r
 
 def summary_report():
     for make in reporting_object.items():
@@ -77,5 +94,5 @@ def summary_report():
         # Blank line between entries
         print()
 
-make_reporting_object()        
+reporting_object = make_reporting_object()
 summary_report()
