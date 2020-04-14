@@ -69,14 +69,8 @@ def make_reporting_object():
         make[1], 
         dict([(
             model[1], 
-            [ 
               #https://www.quora.com/How-do-you-search-a-list-of-tuples-in-Python
-              color[1] for color in colors if (model[0], color[0]) in available_car_colors
-              # for avail_color in available_car_colors if (model[0], color[0]) in avail_color == True
-              # avail_color[1] for avail_color in available_car_colors if avail_color[0] == model[2] 
-              # avail_color[1] for avail_color in available_car_colors if avail_color[0] == model[2] #will get color ids
-              # color[1] for color in colors #will get color names
-            ] 
+            [color[1] for color in colors if (model[0], color[0]) in available_car_colors] 
         ) for model in models if model[2] == make[0]])
     ) for make in makes ])
     return r
