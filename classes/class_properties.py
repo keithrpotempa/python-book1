@@ -82,10 +82,17 @@ class Student:
         except AttributeError:
             return 0
 
+# Change your class so that any objects created from it will be rerpesented as strings in the following format.
+
+# Mike Ellis is 35 years old and is in cohort 39
+
+    def __str__(self):
+        return f"{self.fullname} is {self.age} years old and is in Cohort {self.cohort}"
+
 
 student1 = Student()
 student1.fname = "Arby"
 student1.lname = "Ross"
 student1.age = 500
 student1.cohort = 54
-print(student1.fullname)
+print(student1)
