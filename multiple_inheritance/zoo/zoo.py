@@ -1,14 +1,28 @@
-from animals import Penguin, PaintedDog
+from animals import Ant, BettaFish, CopperheadSnake, Earthworm, Finch, Gerbil, Mouse, PaintedDog, Parakeet, Penguin, Terrapin, TimberRattlesnake
 from habitats import Aquarium
-
-
-bob = Penguin("Bob")
-ralph = PaintedDog("Ralph")
+from containers import Aviary, Cage, FishBowl, Hutch
 
 seaworld = Aquarium("Sea World")
-seaworld.add_swimmer_pythonic(bob)
-seaworld.add_swimmer_pythonic(ralph)
-seaworld.add_swimmer_type_check(ralph)
+aerie = Aviary()
+big_cage = Cage()
+big_bowl = FishBowl()
+underground_thing = Hutch()
 
-for animal in seaworld.animals:
-    print(f'{animal} lives in Sea World')
+animals = [Ant, BettaFish, CopperheadSnake, Earthworm, Finch, Gerbil, Mouse, PaintedDog, Parakeet, Penguin, Terrapin, TimberRattlesnake]
+names = ["Liam", "Emma", "Noah", "Olivia", "William", "Ava", "James", "Isabella", "Oliver", "Sophia", "Benjamin", "Charlotte"]
+containers = [Aviary, Cage, FishBowl, Hutch]
+
+for animal in animals:
+    i = animals.index(animal)
+    name = names[i]
+    name = animal(f"{name}")
+    name.stow_away()
+    print(name)
+
+for container in containers:
+    print(f"Animals in {container}")
+    for animals in container.instances[0].animals:
+        print(animal)
+
+# for animal in seaworld.animals:
+#     print(f'{animal} lives in Sea World')
