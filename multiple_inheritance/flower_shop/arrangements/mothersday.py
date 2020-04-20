@@ -5,7 +5,9 @@ from arrangements import Arrangement
 # Also, each flower in this arrangement is organically grown with no pesticides used. Because of this, these arrangements have to be transported in a non-refrigerated container.
 
 class MothersDay(Arrangement):
+    instances = []
 
-    def __init__(self):
+    def __init__(self, receiver):
+        self.instances.append(self)
         self.holiday = "Mother's Day"
-        super().__init__()
+        super().__init__(self.holiday, receiver)

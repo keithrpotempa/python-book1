@@ -5,16 +5,19 @@ from arrangements import Arrangement
 # This arrangment is flamboyant and extravagent. Each flower stem is cut to 7 inches. Flowers in this arrangement are not organically grown, so they can be transported in a refrigerated container.
 
 class ValentinesDay(Arrangement):
-  
-    def __init__(self):
-        holiday = "Valentine's Day"
-        super().__init__(holiday)
+    instances = []
+    
+    def __init__(self, receiver):
+        self.instances.append(self)
+        self.holiday = "Valentine's Day"
+        super().__init__(self.holiday, receiver)
         
     # Override the `enhance` method to ensure only
     # roses, lillies, and alstroemeria can be added
     def enhance(self, flower):
         # self.flowers.append(flower)
-        if flower.name == "Rose" or flower.name == "Lilly" or flower.name == "Alstroemeria":
+        if flower.name == "Rose" or flower.name == "Lily" or flower.name == "Alstroemeria":
             self.flowers.append(flower)
+            print(f"{flower.name} added to {self.holiday} Arrangement for {self.receiver}")
         else:
-            print(f"Only roses, lillies, and alstroemeria can be added to a {self.holiday} Arrangement.")
+            pass
