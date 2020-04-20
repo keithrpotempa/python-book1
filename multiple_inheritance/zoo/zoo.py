@@ -8,21 +8,21 @@ big_cage = Cage()
 big_bowl = FishBowl()
 underground_thing = Hutch()
 
-animals = [Ant, BettaFish, CopperheadSnake, Earthworm, Finch, Gerbil, Mouse, PaintedDog, Parakeet, Penguin, Terrapin, TimberRattlesnake]
+animal_classes = [Ant, BettaFish, CopperheadSnake, Earthworm, Finch, Gerbil, Mouse, PaintedDog, Parakeet, Penguin, Terrapin, TimberRattlesnake]
 names = ["Liam", "Emma", "Noah", "Olivia", "William", "Ava", "James", "Isabella", "Oliver", "Sophia", "Benjamin", "Charlotte"]
 containers = [Aviary, Cage, FishBowl, Hutch]
 
-for animal in animals:
-    i = animals.index(animal)
+for animal_class in animal_classes:
+    i = animal_classes.index(animal_class)
     name = names[i]
-    name = animal(f"{name}")
+    name = animal_class(f"{name}")
     name.stow_away()
-    print(name)
 
 for container in containers:
-    print(f"Animals in {container}")
-    for animals in container.instances[0].animals:
-        print(animal)
+    instance = container.instances[0]
+    print(f"Animals in {instance}:")
+    for animal in instance.animals:
+        print(f"    - {animal}")
 
 # for animal in seaworld.animals:
 #     print(f'{animal} lives in Sea World')
